@@ -1,0 +1,57 @@
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
+const packageName = require('./package.json').name;
+
+module.exports = {
+    entry: './src/main.js',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'master.[hash:8].js',
+        library: `${packageName}-[name]`,
+        libraryTarget: 'umd',
+        jsonpFunction: `webpackJsonp_${packageName}`,
+    },
+    devServer: {
+        port: 2000,
+        host: 'localhost',
+        open: true,
+        historyApiFallback: true,
+        proxy: {
+            '/app1': {
+                target: 'http://localhost:2001'
+            },
+            '/app2': {
+                target: 'http://localhost:2002'
+            }
+        }
+    },
+    resolve: {
+        extensions: ['.jsx', '.js']
+    },
+    module: {
+        rules: [
+            {
+                test: /\.jsx?$/,
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env', '@babel/preset-react'],
+                    plugins: ["@babel/plugin-transform-runtime","@babel/plugin-transform-modules-commonjs"]
+
+                }
+            }
+        ]
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './index.html'
+        }),
+        new CleanWebpackPlugin(),
+        new webpack.ProvidePlugin({
+            React: 'react',
+            Component: ['react', 'Component'],
+            styled: ['styled-components', 'default']
+        })
+    ]
+}
