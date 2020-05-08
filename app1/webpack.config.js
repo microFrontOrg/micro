@@ -1,3 +1,9 @@
+/*
+ * @Description: 
+ * @Author: 郭军伟
+ * @Date: 2020-05-08 16:03:15
+ * @lastEditTime: Do not edit
+ */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -9,6 +15,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'master.[hash:8].js',
+        publicPath: '//localhost:2001/',
         library: `${packageName}-[name]`,
         libraryTarget: 'umd',
         jsonpFunction: `webpackJsonp_${packageName}`,

@@ -5,7 +5,7 @@ export default class App extends Component {
     }
 
     changeRoute(url) {
-        window.location.href = url;
+        window.history.pushState(null, null, url);
     }
 
     render() {
@@ -15,8 +15,14 @@ export default class App extends Component {
                 <div>
                     <Slider>
                         <Menu>
-                            <MenuItem onClick={() => this.changeRoute('#/app1')}>应用1</MenuItem>
-                            <MenuItem onClick={() => this.changeRoute('#/app2')}>应用2</MenuItem>
+                            <MenuItem onClick={() => this.changeRoute('/app1')}>应用1</MenuItem>
+                            <MenuItem>
+                                <div>应用2</div>
+                                <Menu>
+                                    <MenuItem onClick={() => this.changeRoute('/app2/test')}>Test</MenuItem>
+                                    <MenuItem onClick={() => this.changeRoute('/app2/Aaa')}>Aaa</MenuItem>
+                                </Menu>
+                            </MenuItem>
                         </Menu>
                     </Slider>
                     <Content id="container">内容区域</Content>
