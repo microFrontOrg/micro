@@ -6,7 +6,7 @@
  */
 import ReactDom from 'react-dom';
 import App from './App.jsx';
-import { HashRouter as Router, Route, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 import { Fragment } from 'react';
 
 if (!window.__POWERED_BY_QIANKUN__) {

@@ -9,7 +9,7 @@ import ReactDom from 'react-dom';
 import App from './App.jsx';
 import Test from './Test';
 import Aaa from './Aaa';
-import { HashRouter as Router, Route, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Redirect, Switch } from 'react-router-dom';
 
 if (!window.__POWERED_BY_QIANKUN__) {
     render();
@@ -20,9 +20,12 @@ if (!window.__POWERED_BY_QIANKUN__) {
 function routes() {
     return (
         <Fragment>
-            {/* <Redirect from='/' to='/app2' /> */}
-            <Route path='/app2/test' component={Test} />
-            <Route path='/app2/Aaa' component={Aaa} />
+            <Route path='/app2' component={App}>
+                <Switch>
+                    <Route path='/app2/test' component={Test} />
+                    <Route path='/app2/Aaa' component={Aaa} />
+                </Switch>
+            </Route>
         </Fragment>
     )
 }

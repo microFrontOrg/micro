@@ -5,9 +5,7 @@ export default class App extends Component {
 
     render() {
         return (
-            <div>
-                应用2
-            </div>
+            <div>{this.children}</div>
         )
     }
 }

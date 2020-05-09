@@ -6,7 +6,7 @@
  */
 import ReactDom from 'react-dom';
 import App from './App.jsx';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { registerMicroApps, start, setDefaultMountApp } from 'qiankun';
 
 function getActiveRule(url) {
@@ -24,4 +24,4 @@ setDefaultMountApp('/app1');
 
 start();
 
-ReactDom.render(<HashRouter><App /></HashRouter>, document.getElementById('master'));
+ReactDom.render(<Router><App /></Router>, document.getElementById('master'));
