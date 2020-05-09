@@ -7,21 +7,29 @@
 import ReactDom from 'react-dom';
 import App from './App.jsx';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { registerMicroApps, start, setDefaultMountApp } from 'qiankun';
+import appConfig from './appConfig';
+import { registerMicroApps, start, setDefaultMountApp, addGlobalUncaughtErrorHandler, initGlobalState } from 'qiankun';
 
-function getActiveRule(url) {
-    return location => location.pathname.startsWith(url);
+const commonState = {
+    user: {
+        sessionId: '123455667',
+    },
+    button: null
 }
 
-registerMicroApps([
-    { name: 'app1', entry: 'http://localhost:2001', container: '#container', activeRule: getActiveRule('/app1') },
-    { name: 'app2', entry: 'http://localhost:2002', container: '#container', activeRule: getActiveRule('/app2') }
-], {
-
-})
+registerMicroApps(appConfig, {});
 
 setDefaultMountApp('/app1');
 
+addGlobalUncaughtErrorHandler(error => {
+    console.log(error);
+})
+
+const actions = initGlobalState(commonState);
+actions.onGlobalStateChange(() => {
+    console.log('全局状态发生改变');
+})
+
 start();
 
-ReactDom.render(<Router><App /></Router>, document.getElementById('master'));
+ReactDom.render(<App />, document.getElementById('master'));

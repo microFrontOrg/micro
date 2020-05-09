@@ -1,4 +1,4 @@
-
+import { BrowserRouter as Router } from 'react-router-dom';
 export default class App extends Component {
     constructor(props) {
         super(props);
@@ -25,7 +25,7 @@ export default class App extends Component {
                             </MenuItem>
                         </Menu>
                     </Slider>
-                    <Content id="container">内容区域</Content>
+                    <Content id="container"></Content>
                 </div>
             </div>
         )
