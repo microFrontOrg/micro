@@ -15,7 +15,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'master.[hash:8].js',
-        publicPath: '//localhost:2001/',
+        publicPath: '/',
         library: `${packageName}-[name]`,
         libraryTarget: 'umd',
         jsonpFunction: `webpackJsonp_${packageName}`,
